@@ -1,0 +1,19 @@
+Creator Dost AI — Real AI version
+
+The generator form in index.html sends a POST request to /.netlify/functions/generate
+(netlify/functions/generate.mjs). That function calls Google's Gemini API on the server,
+so the API key is never stored in the HTML or sent to the browser.
+
+How the GEMINI_API_KEY works:
+- If you add your own GEMINI_API_KEY in Netlify (Project configuration > Environment variables),
+  the function uses it and calls Google directly. Check Google AI Studio for usage limits and billing.
+- If you don't set one, Netlify AI Gateway provides GEMINI_API_KEY automatically, and usage
+  counts against your Netlify AI credits.
+
+Deploying:
+1. Push this repository to GitHub (main branch). Netlify builds and deploys it automatically,
+   including the function. Drag-and-drop deploys do not include functions.
+2. If you add or change GEMINI_API_KEY, trigger a new deploy so the function picks it up.
+3. Never paste the API key into index.html or share it publicly.
+
+The site shows a friendly error message if the AI service is unavailable or not configured.
